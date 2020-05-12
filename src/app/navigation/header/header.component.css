@@ -1,0 +1,21 @@
+a {
+    text-decoration: none;
+    box-shadow: inset 0 -3px 0 -1px #FFF986;
+    color:white;
+    transition: box-shadow .8s ease-in-out;
+    line-height: 40px;
+}
+
+a:hover,
+a:active {
+    box-shadow: inset 0 -40px 0 -1px aqua;
+}
+
+.logo {
+    color: #FFF986;
+}
+
+.navigation-tabs {
+    list-style: none;
+}
+
