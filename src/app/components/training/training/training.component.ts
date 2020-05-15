@@ -13,8 +13,8 @@ export class TrainingComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onStartNewTraining() {
-    this.ongoingTraining = true;
+  onToggleStartNewTraining() {
+    this.ongoingTraining = !this.ongoingTraining;
   }
 
 }
