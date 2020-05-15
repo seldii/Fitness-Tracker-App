@@ -3,16 +3,20 @@
         <mat-icon class="nav-caption">home</mat-icon>
         <span>Wecome</span>
     </a>
-    <a mat-list-item routerLink="/signup" (click)="onCloseSidenav()">
+    <a mat-list-item *ngIf="!isAuth" routerLink="/signup" (click)="onCloseSidenav()">
         <mat-icon class="nav-caption">face</mat-icon>
         <span>Signup</span>
     </a>
-    <a mat-list-item routerLink="/login" (click)="onCloseSidenav()">
+    <a mat-list-item *ngIf="!isAuth" routerLink="/login" (click)="onCloseSidenav()">
         <mat-icon class="nav-caption">input</mat-icon>
         <span>Login</span>
     </a>
-    <a mat-list-item routerLink="/training" (click)="onCloseSidenav()">
+    <a mat-list-item *ngIf="isAuth" routerLink="/training" (click)="onCloseSidenav()">
         <mat-icon class="nav-caption">fitness_center</mat-icon>
         <span>Training</span>
+    </a>
+    <a mat-list-item *ngIf="isAuth" routerLink="/logout" (click)="onCloseSidenav()">
+        <mat-icon class="nav-caption">keyboard_tab</mat-icon>
+        <span>Logout</span>
     </a>
 </mat-nav-list>

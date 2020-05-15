@@ -18,6 +18,8 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { StopTrainingModalComponent } from './components/training/stop-training-modal/stop-training-modal.component';
+import { AuthService } from './components/auth/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +44,7 @@ import { StopTrainingModalComponent } from './components/training/stop-training-
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingModalComponent]
 })
