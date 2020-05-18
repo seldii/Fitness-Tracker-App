@@ -19,6 +19,8 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { StopTrainingModalComponent } from './components/training/stop-training-modal/stop-training-modal.component';
 import { AuthService } from './components/auth/auth.service';
+import { TrainingService } from './components/training/training.service';
+
 
 
 @NgModule({
@@ -44,7 +46,7 @@ import { AuthService } from './components/auth/auth.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, TrainingService],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingModalComponent]
 })

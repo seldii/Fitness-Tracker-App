@@ -5,6 +5,8 @@ import { TrainingComponent } from './components/training/training/training.compo
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { LoginComponent } from './components/auth/login/login.component';
 
+import {AuthGuard} from './components/auth/auth.guard';
+
 const routes: Routes = [
   {
     path: '',
@@ -21,6 +23,7 @@ const routes: Routes = [
   {
     path: 'training',
     component: TrainingComponent,
+    canActivate: [AuthGuard]
   },
 ];
 
@@ -31,7 +34,8 @@ const routes: Routes = [
   exports: [
     RouterModule
   ],
-  declarations: []
+  //AuthGuard treated as servivce so should be provided here because we use it only here
+  providers: [AuthGuard]
 })
 
 export class AppRoutingModule { }

@@ -42,7 +42,8 @@ export class AuthService {
     }
 
     isAuth() {
-        return this.user !== null
+        console.log(this.user);
+        return this.user
     }
 
     private authSuccess() {
