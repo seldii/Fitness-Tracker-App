@@ -6,6 +6,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 
 import { Exercise } from './exercise.model';
 import { Subscription } from 'rxjs';
+import { UIServices } from 'src/app/shared/UIServices.service';
 
 @Injectable()
 export class TrainingService {
@@ -16,24 +17,26 @@ export class TrainingService {
   private runningExercise: Exercise;
   private fbSubscriptions: Subscription[] = [];
 
-  constructor(private db: AngularFirestore) {}
+  constructor(private db: AngularFirestore, private uiService: UIServices) {}
 
   fetchAvailableExercises() {
+    this.uiService.loadingStateChanged.next(true);
     this.fbSubscriptions.push(
       this.db
         .collection('availableExercises')
         .snapshotChanges()
         .pipe(
-          map((docArray) => {
-            return docArray.map((doc) => {
+          map(docArray => {
+            return docArray.map(doc => {
               return {
                 id: doc.payload.doc.id,
-                ...(doc.payload.doc.data() as Exercise),
+                ...(doc.payload.doc.data() as Exercise)
               };
             });
           })
         )
         .subscribe((exercises: Exercise[]) => {
+          this.uiService.loadingStateChanged.next(false);
           this.availableExercises = exercises;
           this.exercisesChanged.next([...this.availableExercises]);
         })
@@ -43,7 +46,7 @@ export class TrainingService {
   startExercise(selectedId: string) {
     //this.db.doc('availableExercises/' + selectedId).update({lastselected: new Date()})
     this.runningExercise = this.availableExercises.find(
-      (e) => e.id === selectedId
+      e => e.id === selectedId
     );
     this.exerciseChanged.next({ ...this.runningExercise });
   }
@@ -56,7 +59,7 @@ export class TrainingService {
     this.addDataToDatabase({
       ...this.runningExercise,
       date: new Date(),
-      state: 'completed',
+      state: 'completed'
     });
     this.runningExercise = null;
     this.exerciseChanged.next(null);
@@ -68,7 +71,7 @@ export class TrainingService {
       duration: this.runningExercise.duration * (progress / 100),
       calories: this.runningExercise.calories * (progress / 100),
       date: new Date(),
-      state: 'cancelled',
+      state: 'cancelled'
     });
     this.runningExercise = null;
     this.exerciseChanged.next(null);
@@ -86,7 +89,7 @@ export class TrainingService {
   }
 
   cancelSubscriptions() {
-    this.fbSubscriptions.forEach((s) => s.unsubscribe());
+    this.fbSubscriptions.forEach(s => s.unsubscribe());
   }
 
   private addDataToDatabase(exercise: Exercise) {
