@@ -1,17 +1,28 @@
 <mat-toolbar color="primary">
-    <div class="menu-button" fxHide.gt-xs>
-        <button mat-icon-button (click)="onToggleSidenav()">
-            <mat-icon aria-hidden="false" aria-label="Example home icon" >menu</mat-icon>
-        </button>  
-    </div>
-    <div class="logo">
-        LOGO
-    </div>
-    <ul fxFlex fxLayout fxLayoutAlign="flex-end" fxLayoutGap="5px" class="navigation-tabs" fxHide.xs>
-        <li><a routerLink="/">Home</a></li>
-        <li *ngIf="!isAuth"><a routerLink="/signup">Signup</a></li>
-        <li *ngIf="!isAuth"><a routerLink="/login">Login</a></li>
-        <li *ngIf="isAuth"><a routerLink="/training">Training</a></li>
-        <li *ngIf="isAuth"><a style="cursor: pointer" (click)="onLogout()">Logout</a></li>
-    </ul>
+  <div class="menu-button" fxHide.gt-xs>
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon aria-hidden="false" aria-label="Example home icon"
+        >menu</mat-icon
+      >
+    </button>
+  </div>
+  <div class="logo">
+    SG Fitness
+  </div>
+  <ul
+    fxFlex
+    fxLayout
+    fxLayoutAlign="flex-end"
+    fxLayoutGap="5px"
+    class="navigation-tabs"
+    fxHide.xs
+  >
+    <li><a routerLink="/">Home</a></li>
+    <li *ngIf="!isAuth"><a routerLink="/signup">Signup</a></li>
+    <li *ngIf="!isAuth"><a routerLink="/login">Login</a></li>
+    <li *ngIf="isAuth"><a routerLink="/training">Training</a></li>
+    <li *ngIf="isAuth">
+      <a style="cursor: pointer" (click)="onLogout()">Logout</a>
+    </li>
+  </ul>
 </mat-toolbar>
